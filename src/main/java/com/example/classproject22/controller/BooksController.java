@@ -32,10 +32,20 @@ public class BooksController {
     }
 
     // get book by genre
-    @GetMapping(path = "/books/search")
-    public List<Books> searchBooks( @RequestParam(name = "genre", required = false) String genre) {
+    @GetMapping(path = "/books/searchGenre")
+    public List<Books> searchBooksByGenre( @RequestParam(name = "genre", required = false) String genre) {
         if (genre != null) {
             return this.bookRepo.findBooksByGenre(genre);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    // get book by average rating
+    @GetMapping(path = "/books/searchRating")
+    public List<Books> searchBooksByRating( @RequestParam(name = "average_rating", required = false) double average_rating) {
+        if (average_rating >= 0 && average_rating <= 5) {
+            return this.bookRepo.findBooksByRating(average_rating);
         } else {
             return new ArrayList<>();
         }
