@@ -17,29 +17,6 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-//    /**
-//     * this method is for retrieving book detail by ISBN
-//     * @param bookISBN Book ISBN
-//     * @return returns the Book Object
-//     */
-//    @GetMapping(value = "/{isbn}")
-//    public Book getBookByBookISBN(@PathVariable(name = "isbn")String bookISBN) {
-//        Optional<Book> bookOptional =  bookRepository.findById(bookISBN);
-//        if(bookOptional.isPresent()) {
-//            return bookOptional.get();
-//        } else {
-//            return null;
-//        }
-//    }
-
-    /**
-     * This method is for returning all the Books and books based on some conditions
-     * @param author
-     * @param genre
-     * @param rating
-     * @param x
-     * @return List of the Book
-     */
     @GetMapping
     public List<Book> getAllBooks(@RequestParam(name = "author", required = false) String author, @RequestParam(name = "genre", required = false) String genre,
                                   @RequestParam(name = "rating", required = false)Integer rating, @RequestParam(name = "x", required = false) Integer x) {
